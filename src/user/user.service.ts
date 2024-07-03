@@ -92,4 +92,15 @@ export class UserService {
 
     return restUser;
   }
+
+  async getUserIntervalsCount(userId: string) {
+    return this.prismaService.user.findUnique({
+      where: {
+        id: userId,
+      },
+      select: {
+        intervalsCount: true,
+      },
+    });
+  }
 }
