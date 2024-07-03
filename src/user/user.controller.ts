@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, Put } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Patch } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CheckAuthDecorator } from '../auth/decorators/check-auth.decorator';
 import { CurrentUserDecorator } from '../auth/decorators/current-user.decorator';
@@ -14,7 +14,7 @@ export class UserController {
     return this.userService.getProfile(id);
   }
 
-  @Put('profile')
+  @Patch('profile')
   @HttpCode(200)
   @CheckAuthDecorator()
   async updateProfile(@CurrentUserDecorator('id') id: string, @Body() dto: UserDto) {
