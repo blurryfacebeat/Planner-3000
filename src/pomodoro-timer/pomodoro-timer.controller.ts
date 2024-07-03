@@ -24,12 +24,8 @@ export class PomodoroTimerController {
   @Patch('/round/:id')
   @HttpCode(200)
   @CheckAuthDecorator()
-  async updateRound(
-    @Param('id') id: string,
-    @CurrentUserDecorator('id') userId: string,
-    @Body() dto: PomodoroTimerRoundDto,
-  ) {
-    return this.pomodoroTimerService.updateRound(dto, id, userId);
+  async updateRound(@Param('id') id: string, @Body() dto: PomodoroTimerRoundDto) {
+    return this.pomodoroTimerService.updateRound(dto, id);
   }
 
   @Patch(':id')

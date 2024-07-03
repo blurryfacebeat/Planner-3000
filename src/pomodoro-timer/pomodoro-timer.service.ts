@@ -25,7 +25,7 @@ export class PomodoroTimerService {
       include: {
         rounds: {
           orderBy: {
-            id: 'desc',
+            id: 'asc',
           },
         },
       },
@@ -76,10 +76,9 @@ export class PomodoroTimerService {
     });
   }
 
-  async updateRound(dto: Partial<PomodoroTimerRoundDto>, roundId: string, userId: string) {
-    return this.prismaService.pomodoroSession.update({
+  async updateRound(dto: Partial<PomodoroTimerRoundDto>, roundId: string) {
+    return this.prismaService.pomodoroRound.update({
       where: {
-        userId,
         id: roundId,
       },
       data: dto,
